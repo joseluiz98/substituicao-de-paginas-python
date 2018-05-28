@@ -26,7 +26,7 @@ for acesso in acessos:
     existe = False
 
 # Algoritmo LRU
-contador = 0 # Representa o momento em que o acesso ocorre, nesta implementação, o loop do for, ou seja, quanto menor este número, mais antigo foi o acesso ao dado
+momento = 0 # Representa o momento em que o acesso ocorre, nesta implementação, o loop do for, ou seja, quanto menor este número, mais antigo foi o acesso ao dado
 
 for acesso in acessos:
     acesso = [acesso, -1] # O vetor de acessos recebe o próprio elemento acessado, e um valor que representa o último momento em que foi acessado
@@ -35,11 +35,11 @@ for acesso in acessos:
     for elemento in memoriaLRU:
         if(elemento[0] == acesso):
             existe = True
-            acesso = [acesso, contador] # O vetor de acessos recebe o próprio elemento acessado, e o último momento em que foi acessado
+            acesso = [acesso, momento] # O vetor de acessos recebe o próprio elemento acessado, e o último momento em que foi acessado
             elemento = acesso
     if(not(existe)):
         if(len(memoriaLRU) != tamMemoria):
-            acesso = [acesso, contador] # O vetor de acessos recebe o próprio elemento acessado, e o último momento em que foi acessado
+            acesso = [acesso, momento] # O vetor de acessos recebe o próprio elemento acessado, e o último momento em que foi acessado
             elemento = acesso
             memoriaLRU.append(acesso)
         else:
@@ -49,12 +49,11 @@ for acesso in acessos:
             elemento = memoriaLRU.index(elemento) # Recebe o índice do elemento
             memoriaLRU.pop(elemento) # Remove o elemento menos recentemente usado
             
-            acesso = [acesso, contador] # Registra o acesso ao elemento na memória
-            elemento = acesso
+            acesso = [acesso, momento] # Registra o acesso ao elemento na memória
             memoriaLRU.append(acesso) # Insere o elemento na memória
         pageMiss[2] = pageMiss[2] + 1
     existe = False
-    contador = contador+1
+    momento = momento+1
 
 print pageMiss[0]
 print pageMiss[2]
