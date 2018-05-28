@@ -6,6 +6,7 @@ pageMiss = 0
 existe = False
 elemAInserir = 0
 elemAInserir = input()
+
 while(elemAInserir != -1):
     for elemento in memoria:
         if(elemento == elemAInserir): existe = True
