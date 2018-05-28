@@ -7,6 +7,7 @@ existe = False
 elemAInserir = 0
 elemAInserir = input()
 
+# Algoritmo FIFO
 while(elemAInserir != -1):
     for elemento in memoria:
         if(elemento == elemAInserir): existe = True
