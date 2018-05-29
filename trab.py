@@ -73,26 +73,31 @@ for acesso in acessosAMemoria:
 
 # Algoritmo LRU
 momento = 0 # Representa o momento em que o acesso ocorre, nesta implementação, o loop do for, ou seja, quanto menor este número, mais antigo foi o acesso ao dado
-
+elementoEstaNaMemoria = False
 for acesso in acessosAMemoria:
     acesso = [acesso, 0] # O vetor de acessos recebe o próprio elemento acessado, e um valor que representa o último momento em que foi acessado
 
 for acesso in acessosAMemoria:
     for elemento in memoriaLRU:
         if(elemento[0] == acesso):
+            indice = -1
+            for i in range(0,tamMemoria): # Recupera o indice do elemento
+                if(memoriaLRU[i][0] == elemento[0]):
+                    indice = i
+                    break
             elementoEstaNaMemoria = True
-            acesso = [acesso, momento] # O vetor de acessos recebe o próprio elemento acessado, e o último momento em que foi acessado
-            elemento = acesso
+            elemento = [acesso, momento] # O último momento em que o elemento foi referenciado é atualizado
+            memoriaLRU[indice] = elemento # Atualiza o elemento na memória
     if(not(elementoEstaNaMemoria)):
         if(len(memoriaLRU) != tamMemoria):
             acesso = [acesso, momento] # O vetor de acessos recebe o próprio elemento acessado, e o último momento em que foi acessado
             elemento = acesso
             memoriaLRU.append(acesso)
         else:
-            menosRecente = memoriaLRU[0][1] 
+            menosRecente = memoriaLRU[0]
             for elemento in memoriaLRU:
-                if(elemento[1] < menosRecente): menosRecente = elemento # Procura o elemento menos recentemente utilizado
-            elemento = memoriaLRU.index(elemento) # Recebe o índice do elemento
+                if(elemento[1] < menosRecente[1]): menosRecente = elemento # Procura o elemento menos recentemente utilizado
+            elemento = memoriaLRU.index(menosRecente) # Recebe o índice do elemento
             memoriaLRU.pop(elemento) # Remove o elemento menos recentemente usado
             
             acesso = [acesso, momento] # Registra o acesso ao elemento na memória
