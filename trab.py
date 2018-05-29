@@ -39,7 +39,7 @@ def proximaUtilizacao(elemento, acessosAMemoria, elementosJaAnalisados):
 
     return -1
 
-# Algoritmo OTM (Roda antes do LRU pois este último altera o vetor de acessos!)
+# Algoritmo OTM
 momento = 0
 referenciasFuturas = []
 for acesso in acessosAMemoria:
