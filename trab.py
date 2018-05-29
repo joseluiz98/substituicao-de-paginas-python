@@ -106,6 +106,6 @@ for acesso in acessosAMemoria:
     elementoEstaNaMemoria = False
     momento = momento+1
 
-print pageMiss[0]
-print pageMiss[1]
-print pageMiss[2]
+print 'FIFO ' + str(pageMiss[0])
+print 'OTM ' + str(pageMiss[1])
+print 'LRU ' + str(pageMiss[2])
